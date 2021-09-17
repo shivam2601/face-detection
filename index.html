@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="face-api.min.js"></script>
+  <script defer src="script2.js"></script>
+  <title>Face Recognition</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+    #id-1{
+      height: 230px;
+    }
+    #id-2{
+      height: 230px;
+    }
+    img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+    video{
+      position:relative
+    }
+    #video-container{
+      position:relative
+
+    }
+   
+    #canvas2{
+      position: relative;
+      display: none;
+    }
+  
+  </style>
+</head>
+<body>
+  <div id="img-container" style="display:none">
+  <div id="video-container" style="display:flex; flex-direction:column">
+    <video id="video" width="320" height="240" autoplay muted></video>
+    <br/>
+    <br/>
+    <canvas id="canvas2" width="320" height="240"></canvas>
+    <button id="click-photo">Capture</button>
+  </div>
+  </div>
+
+  
+  <div id="doc-img" class="doc-img">
+  <h1>Please enter you Document Picture</h1>
+  <div style="height:100px; text-align: center;">
+  <input type="file" id="imageUpload">
+  </div>
+  </div>
+  
+  
+</body>
+</html>

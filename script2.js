@@ -1,8 +1,6 @@
 let docImg;
 
 
-
-
 async function compareImg(){
     let image
     let canvas
@@ -83,20 +81,13 @@ click_button.addEventListener('click', async ()=> {
 
 
             compareImg();
+    document.getElementById("img-container").style.display="none"
+
 
   //getBase64FromImageUrl(image_data_url);
   // data url of the image
   //console.log(image_data_url);
 });
-
-
-
-
-
-
-
-
-
 
 
 

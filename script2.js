@@ -1,7 +1,12 @@
 let docImg;
 let userName = "";
+let form = document.getElementById("custom-form");
+let resName;
+let resScore;
 
-async function compareImg() {
+
+
+async function compareImg(img,id) {
   let image;
   let canvas;
 
@@ -11,12 +16,12 @@ async function compareImg() {
 
   const container = document.createElement("div");
   container.style.position = "relative";
-  container.id = "id-1";
+  container.id = id;
 
   document.body.append(container);
 
   //const labeledFaceDescriptors = await loadLabeledImages('Black Widow');
-  image = docImg;
+  image = img;
 
   container.append(image);
   canvas = faceapi.createCanvasFromMedia(image);
@@ -35,10 +40,34 @@ async function compareImg() {
 
   results.forEach((result, i) => {
     const box = resizedDetections[i].detection.box;
-    const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() });
+    const drawBox = new faceapi.draw.DrawBox(box, );
+    console.log(result["_distance"])
     drawBox.draw(canvas);
   });
+
+
+
+  if(id=="id-1"){
+    console.log("klklkl");
+    resName=results[0]["_label"];
+    resScore=1-results[0]["_distance"]
+
+    if(resName!="unknown"){
+      let result =document.createElement('h2');
+      result.innerText='(Name: '+ resName+ ", Score: "+parseFloat(resScore).toFixed(2)+')';
+      document.body.append(result);
+
+    }
+
+    let result3 =document.createElement('button');
+    result3.innerText=resName==="unknown"? "Verification Failed":"Verified";
+    resName==="unknown"?result3.classList.add("red-btn"):result3.classList.add("green-btn")
+    document.body.append(result3);
+  }
+  
+
 }
+
 
 const video = document.getElementById("video");
 let click_button = document.querySelector("#click-photo");
@@ -74,19 +103,23 @@ video.addEventListener("play", () => {
     faceapi.draw.drawDetections(canvas, resizedDetections);
   }, 100);
 });
-click_button.addEventListener("click", async () => {
-  userName = document.getElementById("name").value;
 
+//capture click handle
+
+click_button.addEventListener("click", async () => {
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   let image_data_url = canvas.toDataURL("image/jpeg");
 
   var img = document.createElement("img");
   img.src = image_data_url;
   labeledFaceDescriptors = await loadLabeledImages(userName, img);
+  compareImg(docImg,"id-1");
+  compareImg(img,"id-2");
 
-  compareImg();
   document.getElementById("img-container").style.display = "none";
 });
+
+//image upload code
 
 const imageUpload = document.getElementById("imageUpload");
 
@@ -100,10 +133,11 @@ async function start() {
   imageUpload.addEventListener("change", async () => {
     image = await faceapi.bufferToImage(imageUpload.files[0]);
     docImg = image;
-    document.getElementById("img-container").style.display = "block";
-    document.getElementById("doc-img").style.display = "none";
+
   });
 }
+
+//create image vector for a image
 
 async function loadLabeledImages(name, img) {
   const descriptions = [];
@@ -115,3 +149,14 @@ async function loadLabeledImages(name, img) {
 
   return new faceapi.LabeledFaceDescriptors(name, descriptions);
 }
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  userName = document.getElementById("fname").value;
+  if (userName == "") {
+    alert("please enter the name");
+    return;
+  }
+  document.getElementById("img-container").style.display = "block";
+  document.getElementById("doc-img").style.display = "none";
+});

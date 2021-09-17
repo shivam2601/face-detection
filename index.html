@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script defer src="face-api.min.js"></script>
-  <script defer src="script2.js"></script>
-  <title>Face Recognition</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  
-    #id-1{
-      height: 230px;
-    }
-    #id-2{
-      height: 230px;
-    }
-    img{
-      max-width: 100%;
-      max-height: 100%;
-    }
-    video{
-      position:relative
-    }
-    #video-container{
-      position:relative
-
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script defer src="face-api.min.js"></script>
+    <script defer src="script2.js"></script>
+    <title>Face Recognition</title>
+    <style>
+      body {
    
-    #canvas2{
-      position: relative;
-      display: none;
-    }
-  
-  </style>
-</head>
-<body>
-  <div id="img-container" style="display:none">
-  <div id="video-container" style="display:flex; flex-direction:column">
-    <video id="video" width="320" height="240" autoplay muted></video>
-    
-    <br/>
-    <br/>
-    <canvas id="canvas2" width="320" height="240"></canvas>
-    <input id="name" value=""/>
-    <br/>
-    <button id="click-photo">Capture</button>
-  </div>
-  </div>
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
 
-  
-  <div id="doc-img" class="doc-img">
-  <h1>Please enter you Document Picture</h1>
-  <div style="height:100px; text-align: center;">
-  <input type="file" id="imageUpload">
-  </div>
-  </div>
-  
-  
-</body>
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      #id-1 {
+        height: 330px;
+        margin: 30px;
+      }
+      #id-2 {
+        height: 280px;
+        margin: 30px;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      video {
+        position: relative;
+      }
+      #video-container {
+        position: relative;
+      }
+
+      #canvas2 {
+        position: relative;
+        display: none;
+      }
+      .red-btn {
+        color: #fff;
+        background: red;
+        height: 44px;
+        width: 150px;
+        font-size: 15px;
+        font-weight: 800;
+        border-radius: 6px;
+      }
+      .green-btn {
+        color: #fff;
+        background: green;
+        height: 44px;
+        width: 150px;
+        font-size: 15px;
+        font-weight: 800;
+        border-radius: 6px;
+      }
+      .blue-btn{
+        color: #fff;
+        background: blue;
+        height: 44px;
+        width: 150px;
+        font-size: 15px;
+        font-weight: 800;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="img-container" style="display: none">
+      <div id="video-container" style="display: flex; flex-direction: column; align-items: center;">
+        <video id="video" width="320" height="240" autoplay muted></video>
+
+        <br />
+        <br />
+        <canvas id="canvas2" width="320" height="340"></canvas>
+        <br />
+        <button id="click-photo" class="blue-btn">Capture</button>
+      </div>
+    </div>
+
+    <div id="doc-img" class="doc-img">
+      <h1>Please enter you Document Picture</h1>
+      <div style="height: 100px; text-align: center">
+        <form style="font-size:larger;" id="custom-form">
+          <label for="fname">First name:</label>
+          <input id="fname" value="" />
+
+          <br />
+          <br />
+          
+          <input type="file" id="imageUpload" />
+          <br />
+          <br />
+          <br/>
+
+          <input class="blue-btn" type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
